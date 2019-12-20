@@ -446,6 +446,20 @@
         });
 
     /*----------------------------------------------------*/
+    /*  Login button
+    /*----------------------------------------------------*/
+    $("#login_btn").on('click',function(e) {
+        e.preventDefault();
+        var username_tb = document.getElementById("username").value;
+        var password_tb = document.getElementById("password").value;
+        
+        var login_obj = { : username_tb, age: password_tb, }
+
+        console.log(username_tb);
+        console.log(password_tb);
+    });
+
+    /*----------------------------------------------------*/
     /*  Register
     /*----------------------------------------------------*/
         $("#regButton").on('click',function(e) {
