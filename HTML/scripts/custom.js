@@ -453,7 +453,7 @@
         var username_tb = document.getElementById("username").value;
         var password_tb = document.getElementById("password").value;
         
-        var login_obj = { : username_tb, age: password_tb, }
+        //var login_obj = { : username_tb, age: password_tb, }
 
         console.log(username_tb);
         console.log(password_tb);
