@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-        <title>Chatbox</title>
+    <title>Chatbox</title>
     </head>
     <body  style="text-align:center;">        
     <textarea readonly="true" id="botChat" style="text-align:left; position:fixed; display:block; top:3vh; border:1px solid rgb(146, 17, 17); width:92.5vw; margin-left:1%; margin-right:2.25%; height:75vh; resize:none; font-family:Courier; overflow-y:auto; user-select:none; font-size:3vw;">
@@ -14,15 +14,11 @@
 var you = "Me";
 botSays("Hello, Welcome to Carrrier Up !!!")
 var Hello = ["HI", "HEY", "HOWDY", "HE YA", "HOLA", "HELLO", "SUP", "KONNICHIWA", "ALOHA"]
-var Goodbye = ["BYE", "SEE YA", "CYA", "LATER", "ADIOS", "SAYONARA", "SEEYA"]
+var Goodbye = ["BYE", "SEE YA", "SAYONARA", "LATER", "ADIOS", "CYA", "SEEYA"]
 var Greeting = ["WHAT'S UP", "HOW'S IT GOING", "HOW ARE YOU", "NICE DAY", "GOOD MORNING", "GOOD NIGHT"]
-var Name = [ "WHAT IS YOUR NAME", "WHAT'S YOUR NAME", "WHO ARE YOU", "WHAT DO THEY CALL YOU", "COMO TE LLAMAS"]
-var Actions = ["HELP", "DRINK", "CHALLENGE"]
-var Questions = ["QUESTION", "QUIZ", "CODE", "ANSWER", "HTML", "CSS", "JAVASCRIPT" , "JOB"];
 
-var colors = ["BLUE", "RED", "GREEN", "YELLOW", "WHITE", "BLACK", "SILVER", "GRAY" ];
 var Else = true;
-var questions = [colors, Hello, Goodbye, Greeting, Name, Actions, Questions];
+var questions = [Hello, Goodbye, Greeting];
 
 var reactions=[BotHello, BotGoodbye,BotGreeting];
 var BotHello = ["HI", "HEY", "HOWDY", "HEYA", "HOLA", "HELLO", "SUP", "KONNICHIWA", "ALOHA"]
@@ -46,40 +42,41 @@ function answer(x) {
                 return; }
                 if (question.includes(Hello[i])) {
                     Else = false;
-                    num = Math.ceil(Math.random()*5)
+                    num = Math.ceil(Math.random()*8)
                     var reactHello = BotHello[num];
                     reactHello = reactHello.toLowerCase();
                     reactHello = reactHello.charAt(0).toUpperCase() + reactHello.slice(1);
                     setTimeout(botSays, 600, "\nBot : " + reactHello + "!")
-                    num = Math.ceil(Math.random()*3)
+                    num = Math.ceil(Math.random()*5)
                     var reactGreeting = BotGreeting[num];
                     reactGreeting = reactGreeting.toLowerCase();
                     reactGreeting = reactGreeting.charAt(0).toUpperCase() + reactGreeting.slice(1);
                     setTimeout(botSays, 900, "\nBot : " + reactGreeting + ".")
                     if (question.includes(Greeting[i])) {
-                    setTimeout(botSays, 600, "\nBot : Cool.")
-                }
+                    setTimeout(botSays, 600, "\nBot : Cool.")}
+
                 }
                 if (question.includes(Goodbye[i])) {
                     Else = false;
-                    num = Math.ceil(Math.random()*3)
+                    num = Math.ceil(Math.random()*7)
                     var reactGoodbye = BotGoodbye[num];
                     reactGoodbye = reactGoodbye.toLowerCase();
                     reactGoodbye = reactGoodbye.charAt(0).toUpperCase() + reactGoodbye.slice(1);
                     console.log(reactGoodbye);
                     setTimeout(botSays, 600, "\nBot : " + reactGoodbye + ".")
                 }
-                if (question.includes(Actions[i])) {
+                if (question.includes("HELP")) {
                     Else = false;
                     setTimeout(botSays, 600, "\nBot : Okay, I am here to help. What do you need?")
                     setTimeout(botSays, 700, "\n      If you need to search job, please ask me for job")
                     setTimeout(botSays, 800, "\n      If you need to search employee, please ask me for a employee")
                     setTimeout(botSays, 900, "\n      If you need to contact to my creators, please ask me for a contact")
+                    return;
                 } 
-                if (question.includes("CONTRACT")) {
+                if (question.includes("CONTACT")) {
                     Else = false;
-                    setTimeout(botSays, 600, "\nBot : Contract page is to send message to my creators. ")
-                    setTimeout(botSays, 700, "\n    In the top of the page, there is menu. If you choose PAGES header, you can see contract page choice. ")
+                    setTimeout(botSays, 600, "\nBot : Contact page is to send message to my creators. ")
+                    setTimeout(botSays, 700, "\n    In the top of the page, there is menu. If you choose PAGES header, you can see contact page choice. ")
                     setTimeout(botSays, 800, "\n    There is information for communication. ")
                     setTimeout(botSays, 900, "\n    Also, you can send message with its boxes. ")
                     setTimeout(botSays, 10000, "\n  Please don't complain about me !! ")
