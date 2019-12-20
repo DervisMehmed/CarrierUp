@@ -453,7 +453,7 @@
         var username_tb = document.getElementById("username").value;
         var password_tb = document.getElementById("password").value;
         
-        var login_obj = { name: , age:, }
+        var login_obj = { : username_tb, age: password_tb, }
 
         console.log(username_tb);
         console.log(password_tb);
@@ -467,6 +467,16 @@
             var select_box = document.getElementById("sel1");
             var strUser = select_box.options[select_box.selectedIndex].value;  
             console.log(strUser);
+
+            var e = document.getElementById("sel1");
+            var name      = $('input[name=email]').val();
+            var user_password1    = document.getElementById("reg_password").value;
+            var user_password2   = document.getElementById("reg_password2").value;
+            var strUser = e.options[e.selectedIndex].value;  
+            var obj = { user_email: name, firstPass: user_password1, secondPass: user_password2 }; 
+            var myJSON = JSON.stringify(obj);
+            console.log(myJSON);           
+            //document.getElementById("demo").innerHTML = myJSON;
     });
 
     /*----------------------------------------------------*/
