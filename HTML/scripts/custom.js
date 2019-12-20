@@ -4,7 +4,7 @@
 
     $(document).ready(function(){
 
-
+    var check_login;
     /*----------------------------------------------------*/
     /*  Navigation
     /*----------------------------------------------------*/
@@ -449,15 +449,15 @@
     /*  Login button
     /*----------------------------------------------------*/
     $("#login_btn").on('click',function(e) {
-        /*e.preventDefault();*/
+        e.preventDefault();
         var username_tb = document.getElementById("username").value;
         var password_tb = document.getElementById("password").value;
         
         console.log("tusa bastin");
 
         var myobj = JSON.parse(localStorage.getItem('myStorage'));
-        while(myobj.next())
-        {
+        //while(myobj.next())
+        //{
             console.log("while ici!");
             if (username_tb == myobj.user_email && password_tb == myobj.firstPass)
             {
@@ -465,12 +465,12 @@
                 if(myobj.userType == 1)
                 {   
                     console.log("employer");
-                    window.location.href("index_employer");
+                    window.location.assign("index_employer.html");
                 }
                 else
                 {
                     console.log("employee");
-                    window.location.href("index_employee");
+                    window.location.assign("index_employee.html");
             
                 }
             }
@@ -478,7 +478,7 @@
             {
                 alert("Username or password is wrong!");
             }
-        }
+        //}
 
         console.log(username_tb);
         console.log(password_tb);
