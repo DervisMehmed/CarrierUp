@@ -512,10 +512,12 @@
             function chatbotResponse() {
                 talking = true;
                 botMessage = "I'm confused"; //the default message
+                var i;
                 for (i = 0; i < 10; i++) {
                     var question = lastUserMessage.toUpperCase();
                     if ( question.includes(Hello[i])) {
-                        botMessage = BotHello[Math.floor(Math.random()*(BotHello.length))];;
+                        console.log("Girdi mi");
+                        botMessage = BotHello[Math.floor(Math.random()*(BotHello.length))].toLowerCase();;
                     }
                 }
             }
