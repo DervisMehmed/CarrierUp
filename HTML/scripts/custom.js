@@ -449,19 +449,30 @@
     /*  Login button
     /*----------------------------------------------------*/
     $("#login_btn").on('click',function(e) {
-        e.preventDefault();
+        /*e.preventDefault();*/
         var username_tb = document.getElementById("username").value;
         var password_tb = document.getElementById("password").value;
         
-        var myobj = JSON.parse(myJSON)
+        console.log("tusa bastin");
+
+        var myobj = JSON.parse(localStorage.getItem('myStorage'));
         while(myobj.next())
         {
+            console.log("while ici!");
             if (username_tb == myobj.user_email && password_tb == myobj.firstPass)
             {
+                console.log("matched!");
                 if(myobj.userType == 1)
-                    window.location("index_employer");
+                {   
+                    console.log("employer");
+                    window.location.href("index_employer");
+                }
                 else
-                    window.location("index_employee");
+                {
+                    console.log("employee");
+                    window.location.href("index_employee");
+            
+                }
             }
             else
             {
@@ -483,11 +494,16 @@
             var name      = $('input[name=email]').val();
             var user_password1    = document.getElementById("reg_password").value;
             var user_password2   = document.getElementById("reg_password2").value;
+            
             if( user_password1 == user_password2)
             {
                 var obj = { user_email: name, firstPass: user_password1, userType: regNum }; 
-                var myJSON = JSON.stringify(obj);
-                console.log("JSON: " + myJSON);  
+                //var myJSON = JSON.stringify(obj);
+
+                // localstorage a kayit
+                localStorage.setItem('myStorage', JSON.stringify(obj));
+
+                console.log("JSON: " + localStorage.getItem('myStorage'));  
                 var $tabsNav    = $('.tabs-nav'),
                 $tabsNavLis = $tabsNav.children('li');
                 
