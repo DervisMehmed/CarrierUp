@@ -451,8 +451,13 @@
         $("#regButton").on('click',function(e) {
             e.preventDefault();
             var regValue = document.getElementById("sel1");
-            var regNum = regValue.options[regValue.selectedIndex].value;  
-            console.log(regNum);
+            var regNum = regValue.options[regValue.selectedIndex].value; 
+            var name      = $('input[name=email]').val();
+            var user_password1    = document.getElementById("reg_password").value;
+            var user_password2   = document.getElementById("reg_password2").value; 
+            var obj = { user_email: name, firstPass: user_password1, secondPass: user_password2, userType: regNum }; 
+            var myJSON = JSON.stringify(obj);
+            console.log("JSON: " + myJSON);  
             var $tabsNav    = $('.tabs-nav'),
             $tabsNavLis = $tabsNav.children('li');
             
@@ -467,6 +472,7 @@
             });
           
         });
+
 
     /*----------------------------------------------------*/
     /*  Tabs
