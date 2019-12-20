@@ -485,43 +485,83 @@
     });
 
     /*----------------------------------------------------*/
-    /*  Register
+    /*  Chatbot
     /*----------------------------------------------------*/
-        $("#regButton").on('click',function(e) {
-            e.preventDefault();
-            var regValue = document.getElementById("sel1");
-            var regNum = regValue.options[regValue.selectedIndex].value; 
-            var name      = $('input[name=email]').val();
-            var user_password1    = document.getElementById("reg_password").value;
-            var user_password2   = document.getElementById("reg_password2").value;
+        $("#chatborder").on('click',function(e) {
+
+            var messages = [], //array that hold the record of each string in chat
+            lastUserMessage = "", //keeps track of the most recent input string from the user
+            botMessage = "", //var keeps track of what the chatbot is going to say
+            botName = 'Chatbot', //name of the chatbot
+            talking = true; //when false the speach function doesn't work
+
+            var Hello = ["HI", "HEY", "HOWDY", "HEYA", "HOLA", "HELLO", "SUP", "KONNICHIWA", "ALOHA"]
+            var Goodbye = ["BYE", "SEE YA", "CYA", "LATER", "ADIOS", "SAYONARA", "SEEYA"]
+            var Greeting = ["WHAT'S UP", "HOW'S IT GOING", "HOW ARE YOU", "NICE DAY", "GOOD MORNING", "GOOD NIGHT"]
+            var Name = [ "WHAT IS YOUR NAME", "WHAT'S YOUR NAME", "WHO ARE YOU", "WHAT DO THEY CALL YOU", "COMO TE LLAMAS"]
+            var Actions = ["HELP", "DRINK", "CHALLENGE"]
+            var Questions = ["QUESTION", "QUIZ", "CODE", "ANSWER", "HTML", "CSS", "JAVASCRIPT" , "JOB"];
+
+            var reactions=[BotHello, BotGoodbye,BotGreeting];
+            var BotHello = ["HI", "HEY", "HOWDY", "HEYA", "HOLA", "HELLO", "SUP", "KONNICHIWA", "ALOHA"]
+            var BotGoodbye = ["BYE", "SEE YA", "CYA", "LATER", "ADIOS", "SAYONARA", "SEEYA"]
+            var BotGreeting = ["WHAT'S UP", "HOW'S IT GOING", "HOW ARE YOU", "NICE TO SEE YOU", "GOOD MORNING", "WELCOME"]
+            var BotPleasant = ["Thanks.", "Good job.", "Cool.", "I see.", "Anyway.", "right-o."]
+        
+            //edit this function to change what the chatbot says
+            function chatbotResponse() {
+                talking = true;
+                botMessage = "I'm confused"; //the default message
+                for (i = 0; i < 10; i++) {
+                    var question = lastUserMessage.toUpperCase();
+                    if ( question.includes(Hello[i])) {
+                        botMessage = BotHello[Math.floor(Math.random()*(BotHello.length))];;
+                    }
+                }
+            }
             
-            if( user_password1 == user_password2)
-            {
-                var obj = { user_email: name, firstPass: user_password1, userType: regNum }; 
-                //var myJSON = JSON.stringify(obj);
-
-                // localstorage a kayit
-                localStorage.setItem('myStorage', JSON.stringify(obj));
-
-                console.log("JSON: " + localStorage.getItem('myStorage'));  
-                var $tabsNav    = $('.tabs-nav'),
-                $tabsNavLis = $tabsNav.children('li');
-                
-                $tabsNav.each(function() {
-                    var $this = $(this);
-
-                    $this.next().children('.tab-content').stop(true,true).hide()
-                    .first().show();
-
-                    $this.children('li').first().addClass('active').stop(true,true).show();
-                
-                });
-                
+            //this runs each time enter is pressed.
+            //It controls the overall input and output
+            function newEntry() {
+                //if the message from the user isn't empty then run 
+                if (document.getElementById("chatbox").value != "") {
+                //pulls the value from the chatbox ands sets it to lastUserMessage
+                lastUserMessage = document.getElementById("chatbox").value;
+                //sets the chat box to be clear
+                document.getElementById("chatbox").value = "";
+                //adds the value of the chatbox to the array messages
+                messages.push(lastUserMessage);
+                //Speech(lastUserMessage);  //says what the user typed outloud
+                //sets the variable botMessage in response to lastUserMessage
+                chatbotResponse();
+                //add the chatbot's name and message to the array messages
+                messages.push("<b>" + botName + ":</b> " + botMessage);
+                // says the message using the text to speech function written below
+               
+                //outputs the last few array elements of messages to html
+                for (var i = 1; i < 8; i++) {
+                    if (messages[messages.length - i])
+                    document.getElementById("chatlog" + i).innerHTML = messages[messages.length - i];
+                }
+                }
             }
-            else
-            {
-                alert("Password does not correctly entered!!");
+
+            //runs the keypress() function when a key is pressed
+            document.onkeypress = keyPress;
+            //if the key pressed is 'enter' runs the function newEntry()
+            function keyPress(e) {
+            var x = e || window.event;
+            var key = (x.keyCode || x.which);
+            if (key == 13 || key == 3) {
+            //runs this function when enter is pressed
+            newEntry();
             }
+            if (key == 38) {
+            console.log('hi')
+                //document.getElementById("chatbox").value = lastUserMessage;
+            }
+            }
+
           
         });
 
