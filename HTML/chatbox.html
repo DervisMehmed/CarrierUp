@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+        <title>Chatbox</title>
+    </head>
+    <body  style="text-align:center;">        
+    <textarea readonly="true" id="botChat" style="text-align:left; position:fixed; display:block; top:3vh; border:1px solid rgb(146, 17, 17); width:92.5vw; margin-left:1%; margin-right:2.25%; height:75vh; resize:none; font-family:Courier; overflow-y:auto; user-select:none; font-size:3vw;">
+    </textarea>        
+    <p style="position:absolute; border:1px solid black; top:78vh; left:12.25vw; width:75vw;">        
+    <input type="text" placeholder="Ask a question" onKeypress="enterButton(event, document.getElementsByTagName('input')[0].value);" style="color:red; background-color:black; width:79%;">         
+    <button onClick="answer(document.getElementsByTagName('input')[0].value)" style="font-size: larger; color: rgb(128, 15, 0); background-color: rgb(17, 17, 16);" >ASK ME</button>
+    </p>        
+    <script>
+var you = "Me";
+botSays("Hello, Welcome to Carrrier Up !!!")
+var Hello = ["HI", "HEY", "HOWDY", "HEYA", "HOLA", "HELLO", "SUP", "KONNICHIWA", "ALOHA"]
+var Goodbye = ["BYE", "SEE YA", "CYA", "LATER", "ADIOS", "SAYONARA", "SEEYA"]
+var Greeting = ["WHAT'S UP", "HOW'S IT GOING", "HOW ARE YOU", "NICE DAY", "GOOD MORNING", "GOOD NIGHT"]
+var Name = [ "WHAT IS YOUR NAME", "WHAT'S YOUR NAME", "WHO ARE YOU", "WHAT DO THEY CALL YOU", "COMO TE LLAMAS"]
+var Actions = ["HELP", "DRINK", "CHALLENGE"]
+var Questions = ["QUESTION", "QUIZ", "CODE", "ANSWER", "HTML", "CSS", "JAVASCRIPT" , "JOB"];
+
+var colors = ["BLUE", "RED", "GREEN", "YELLOW", "WHITE", "BLACK", "SILVER", "GRAY" ];
+var Else = true;
+var questions = [colors, Hello, Goodbye, Greeting, Name, Actions, Questions];
+
+var reactions=[BotHello, BotGoodbye,BotGreeting];
+var BotHello = ["HI", "HEY", "HOWDY", "HEYA", "HOLA", "HELLO", "SUP", "KONNICHIWA", "ALOHA"]
+var BotGoodbye = ["BYE", "SEE YA", "CYA", "LATER", "ADIOS", "SAYONARA", "SEEYA"]
+var BotGreeting = ["WHAT'S UP", "HOW'S IT GOING", "HOW ARE YOU", "NICE TO SEE YOU", "GOOD MORNING", "WELCOME"]
+var BotPleasant = ["Thanks.", "Good job.", "Cool.", "I see.", "Anyway.", "right-o."]
+
+function answer(x) {
+    var botOut = botChat.value;
+    document.getElementsByTagName("textarea")[0] = botChat
+    //RESPONSES//
+                document.getElementsByTagName("input")[0].value = ""
+                if (x.charAt(0).includes("!") === false){
+                youSay(x); botChat.scrollTop = botChat.scrollHeight;
+                } 
+                question = x.toUpperCase();
+                console.log(question);
+                for (i = 0; i < 10; i++) {
+            /*          EMPTY RESPONSE          */                    
+                if (question === "" || null) {
+                    setTimeout( function() { botSays("\nBot : What? You shy?"); botChat.scrollTop = botChat.scrollHeight;}, 600);
+                return; }
+ /* Questions, Answers and Responses */
+                if (question.includes(Hello[i])) {
+                    console.log("burdaaaaaa");
+                    num = Math.ceil(Math.random()*3)
+                    var reactHello = BotHello[num];
+                    reactHello = reactHello.toLowerCase();
+                    console.log("burdaaaaaa");
+                    reactHello = reactHello.charAt(0).toUpperCase() + reactHello.slice(1);
+                    console.log(reactHello);
+                    botSays("\nBot : " + reactHello );
+                }
+                if (question.includes(Goodbye[i])) {
+                    console.log("burdaaaaaa");
+                    num = Math.ceil(Math.random()*3)
+                    var reactGoodbye = BotGoodbye[num];
+                    reactGoodbye = reactGoodbye.toLowerCase();
+                    console.log("burdaaaaaa");
+                    reactGoodbye = reactGoodbye.charAt(0).toUpperCase() + reactGoodbye.slice(1);
+                    console.log(reactGoodbye);
+                    botSays("\nBot : " + reactGoodbye );
+                }
+                
+                
+                
+                /*
+                if (question.includes(Goodbye[i])) {
+                    Else = false;
+                    setTimeout(botSays, 600, "\Bot : Godspeed. Se you soon late!!")
+                } else if (question.includes(Name[i])) {
+                    Else = false; setTimeout(botSays, 600, "\nBot : My name is CarrierUp. You can call me bot.")               
+                }else if (question.includes(Actions[i])) {
+                    Else = false; if (question.includes("CHALLENGE")) { setTimeout(botSays, 600, "\nBot : Challenge my creator. Go for it.") } else { setTimeout(botSays, 600, "\nBot : How can I help?  Use my commands !Menu & !Tutorial to see what I can do.") }
+                } else if (question.includes(Questions[i])) {
+                    Else = false; if (Questions[i].includes("HTML")) { setTimeout(botSays, 600, "\nBot : Ask my creator. Go for it. Post your question in the comments, he'll try to help you. I'm just a code, I don't know HOW to code.") } else { setTimeout(botSays, 600, "\nBot : How can I help? Use my commands !Menu & !Tutorial to see what I can do.") }
+                } else if (question.includes(Questions[i])) {
+                    Else = false; if (Questions[i].includes("JOB")) { setTimeout(botSays, 600, "\nBot : You can find browse jobs in the part of for candidates. Searching button just here.") }
+                } else if ( question.includes(Greeting[i]) ) {
+                    Else = false; if (Greeting[i].includes("HOW")&&Greeting[i].includes("YOU")) {
+                    var reactHello = "How am I";
+                    var reactGreeting = "I would say I am 40% complete." }
+                else {
+                    num = Math.ceil(Math.random()*3)
+                    var reactHello = Greeting[num]
+                    reactHello = reactHello.toLowerCase();
+                    reactHello = reactHello.charAt(0).toUpperCase() + reactHello.slice(1);
+                    var reactGreeting = "Same old. Getting coded mostly.";
+                    }
+                    var reactPleasant = BotPleasant[num]
+                    setTimeout(botSays, 600, "\nBot : " + reactHello + ". " + reactGreeting + " " + reactPleasant )
+                  } else if (question.includes(Hello[i])) {
+                  var reactHello = Hello[i];
+                  reactHello = reactHello.toLowerCase();
+                  reactHello = reactHello.charAt(0).toUpperCase() + reactHello.slice(1);
+                  var reactGreeting = "";
+                  var reactPleasant = ""
+                    Else = false;
+                      setTimeout(botSays, 600, "\nBot : " + reactHello + ".")
+                }*/
+            else { } 
+            } 
+        } 
+            /*setTimeout( function() { if (Else === true) 
+            {
+                botSays("\n\n**Error 404: Response Not Found."); } } , 700); 
+               setTimeout( function() {Else = true; botChat.scrollTop = botChat.scrollHeight;}, 730)
+            } */
+            function botSays(x) {
+                document.getElementsByTagName("textarea")[0].innerHTML += x;
+            } function youSay(x) { botSays("\n"+ you + " \ : " + x)
+            }
+            function youDo(x) { botSays("\n"+ you + " " + x)                                            
+            } function enterButton(e, x) { if (e.keyCode == 13) { answer(x); }   }    </script></body></html>
