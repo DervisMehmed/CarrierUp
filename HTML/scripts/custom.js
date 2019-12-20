@@ -448,12 +448,25 @@
     /*----------------------------------------------------*/
     /*  Register
     /*----------------------------------------------------*/
-    $("#regButton").on('click',function(e) {
+        $("#regButton").on('click',function(e) {
             e.preventDefault();
-            var e = document.getElementById("sel1");
-            var strUser = e.options[e.selectedIndex].value;  
-            console.log(strUser);
-    });
+            var regValue = document.getElementById("sel1");
+            var regNum = regValue.options[regValue.selectedIndex].value;  
+            console.log(regNum);
+            var $tabsNav    = $('.tabs-nav'),
+            $tabsNavLis = $tabsNav.children('li');
+            
+            $tabsNav.each(function() {
+                var $this = $(this);
+
+                $this.next().children('.tab-content').stop(true,true).hide()
+                .first().show();
+
+                $this.children('li').first().addClass('active').stop(true,true).show();
+                
+            });
+          
+        });
 
     /*----------------------------------------------------*/
     /*  Tabs
@@ -484,14 +497,14 @@
 
             e.preventDefault();
         });
-          var hash = window.location.hash;
-    var anchor = $('.tabs-nav a[href="' + hash + '"]');
-    if (anchor.length === 0) {
-        $(".tabs-nav li:first").addClass("active").show(); //Activate first tab
-        $(".tab-content:first").show(); //Show first tab content
-    } else {
-        anchor.parent('li').trigger( "click" );
-    }
+        var hash = window.location.hash;
+        var anchor = $('.tabs-nav a[href="' + hash + '"]');
+        if (anchor.length === 0) {
+            $(".tabs-nav li:first").addClass("active").show(); //Activate first tab
+            $(".tab-content:first").show(); //Show first tab content
+        } else {
+            anchor.parent('li').trigger( "click" );
+        }
 
 // ------------------ End Document ------------------ //
 });
