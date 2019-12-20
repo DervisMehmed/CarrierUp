@@ -451,8 +451,14 @@
     $("#regButton").on('click',function(e) {
             e.preventDefault();
             var e = document.getElementById("sel1");
+            var name      = $('input[name=email]').val();
+            var user_password1    = document.getElementById("reg_password").value;
+            var user_password2   = document.getElementById("reg_password2").value;
             var strUser = e.options[e.selectedIndex].value;  
-            console.log(strUser);
+            var obj = { user_email: name, firstPass: user_password1, secondPass: user_password2 }; 
+            var myJSON = JSON.stringify(obj);
+            console.log(myJSON);           
+            //document.getElementById("demo").innerHTML = myJSON;           
     });
 
     /*----------------------------------------------------*/
