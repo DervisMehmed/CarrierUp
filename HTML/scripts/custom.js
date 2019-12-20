@@ -446,12 +446,26 @@
         });
 
     /*----------------------------------------------------*/
+    /*  Login button
+    /*----------------------------------------------------*/
+    $("#login_btn").on('click',function(e) {
+        e.preventDefault();
+        var username_tb = document.getElementById("username").value;
+        var password_tb = document.getElementById("password").value;
+        
+        var login_obj = { name: , age:, }
+
+        console.log(username_tb);
+        console.log(password_tb);
+    });
+
+    /*----------------------------------------------------*/
     /*  Register
     /*----------------------------------------------------*/
     $("#regButton").on('click',function(e) {
             e.preventDefault();
-            var e = document.getElementById("sel1");
-            var strUser = e.options[e.selectedIndex].value;  
+            var select_box = document.getElementById("sel1");
+            var strUser = select_box.options[select_box.selectedIndex].value;  
             console.log(strUser);
     });
 
