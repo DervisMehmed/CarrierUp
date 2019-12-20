@@ -449,11 +449,36 @@
     /*  Login button
     /*----------------------------------------------------*/
     $("#login_btn").on('click',function(e) {
-        e.preventDefault();
+        /*e.preventDefault();*/
         var username_tb = document.getElementById("username").value;
         var password_tb = document.getElementById("password").value;
         
-        //var login_obj = { : username_tb, age: password_tb, }
+        console.log("tusa bastin");
+
+        var myobj = JSON.parse(localStorage.getItem('myStorage'));
+        while(myobj.next())
+        {
+            console.log("while ici!");
+            if (username_tb == myobj.user_email && password_tb == myobj.firstPass)
+            {
+                console.log("matched!");
+                if(myobj.userType == 1)
+                {   
+                    console.log("employer");
+                    window.location.href("index_employer");
+                }
+                else
+                {
+                    console.log("employee");
+                    window.location.href("index_employee");
+            
+                }
+            }
+            else
+            {
+                alert("Username or password is wrong!");
+            }
+        }
 
         console.log(username_tb);
         console.log(password_tb);
@@ -468,22 +493,35 @@
             var regNum = regValue.options[regValue.selectedIndex].value; 
             var name      = $('input[name=email]').val();
             var user_password1    = document.getElementById("reg_password").value;
-            var user_password2   = document.getElementById("reg_password2").value; 
-            var obj = { user_email: name, firstPass: user_password1, secondPass: user_password2, userType: regNum }; 
-            var myJSON = JSON.stringify(obj);
-            console.log("JSON: " + myJSON);  
-            var $tabsNav    = $('.tabs-nav'),
-            $tabsNavLis = $tabsNav.children('li');
+            var user_password2   = document.getElementById("reg_password2").value;
             
-            $tabsNav.each(function() {
-                var $this = $(this);
+            if( user_password1 == user_password2)
+            {
+                var obj = { user_email: name, firstPass: user_password1, userType: regNum }; 
+                //var myJSON = JSON.stringify(obj);
 
-                $this.next().children('.tab-content').stop(true,true).hide()
-                .first().show();
+                // localstorage a kayit
+                localStorage.setItem('myStorage', JSON.stringify(obj));
 
-                $this.children('li').first().addClass('active').stop(true,true).show();
+                console.log("JSON: " + localStorage.getItem('myStorage'));  
+                var $tabsNav    = $('.tabs-nav'),
+                $tabsNavLis = $tabsNav.children('li');
                 
-            });
+                $tabsNav.each(function() {
+                    var $this = $(this);
+
+                    $this.next().children('.tab-content').stop(true,true).hide()
+                    .first().show();
+
+                    $this.children('li').first().addClass('active').stop(true,true).show();
+                
+                });
+                
+            }
+            else
+            {
+                alert("Password does not correctly entered!!");
+            }
           
         });
 
