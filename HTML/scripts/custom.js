@@ -447,11 +447,13 @@
 
     /*----------------------------------------------------*/
     /*  Register
-    /*----------------------------------------------------*/  
-        $('.register').on('click', function(e) {
+    /*----------------------------------------------------*/
+    $("#regButton").on('click',function(e) {
             e.preventDefault();
-            console.log("Deneme1");
-        });
+            var e = document.getElementById("sel1");
+            var strUser = e.options[e.selectedIndex].value;  
+            console.log(strUser);
+    });
 
     /*----------------------------------------------------*/
     /*  Tabs
