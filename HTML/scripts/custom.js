@@ -458,12 +458,16 @@
         {
             if (username_tb == myobj.user_email && password_tb == myobj.firstPass)
             {
-                if(myobj.type)
-                window.location("index_");
+                if(myobj.userType == 1)
+                    window.location("index_employer");
+                else
+                    window.location("index_employee");
             }
-
+            else
+            {
+                alert("Username or password is wrong!");
+            }
         }
-
 
         console.log(username_tb);
         console.log(password_tb);
@@ -472,19 +476,39 @@
     /*----------------------------------------------------*/
     /*  Register
     /*----------------------------------------------------*/
-    $("#regButton").on('click',function(e) {
+        $("#regButton").on('click',function(e) {
             e.preventDefault();
-            var e = document.getElementById("sel1");
+            var regValue = document.getElementById("sel1");
+            var regNum = regValue.options[regValue.selectedIndex].value; 
             var name      = $('input[name=email]').val();
             var user_password1    = document.getElementById("reg_password").value;
             var user_password2   = document.getElementById("reg_password2").value;
-            var strUser = e.options[e.selectedIndex].value;
+            if( user_password1 == user_password2)
+            {
+                var obj = { user_email: name, firstPass: user_password1, userType: regNum }; 
+                var myJSON = JSON.stringify(obj);
+                console.log("JSON: " + myJSON);  
+                var $tabsNav    = $('.tabs-nav'),
+                $tabsNavLis = $tabsNav.children('li');
+                
+                $tabsNav.each(function() {
+                    var $this = $(this);
 
-            var obj = { user_email: name, firstPass: user_password1 }; 
-            var myJSON = JSON.stringify(obj);
-            console.log(myJSON);           
-            //document.getElementById("demo").innerHTML = myJSON;
-    });
+                    $this.next().children('.tab-content').stop(true,true).hide()
+                    .first().show();
+
+                    $this.children('li').first().addClass('active').stop(true,true).show();
+                
+                });
+                
+            }
+            else
+            {
+                alert("Password does not correctly entered!!");
+            }
+          
+        });
+
 
     /*----------------------------------------------------*/
     /*  Tabs
@@ -515,14 +539,14 @@
 
             e.preventDefault();
         });
-          var hash = window.location.hash;
-    var anchor = $('.tabs-nav a[href="' + hash + '"]');
-    if (anchor.length === 0) {
-        $(".tabs-nav li:first").addClass("active").show(); //Activate first tab
-        $(".tab-content:first").show(); //Show first tab content
-    } else {
-        anchor.parent('li').trigger( "click" );
-    }
+        var hash = window.location.hash;
+        var anchor = $('.tabs-nav a[href="' + hash + '"]');
+        if (anchor.length === 0) {
+            $(".tabs-nav li:first").addClass("active").show(); //Activate first tab
+            $(".tab-content:first").show(); //Show first tab content
+        } else {
+            anchor.parent('li').trigger( "click" );
+        }
 
 // ------------------ End Document ------------------ //
 });
