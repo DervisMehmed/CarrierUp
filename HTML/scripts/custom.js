@@ -483,7 +483,46 @@
         console.log(username_tb);
         console.log(password_tb);
     });
+    /*----------------------------------------------------*/
+    /*  Register
+    /*----------------------------------------------------*/
+    $("#regButton").on('click',function(e) {
+        e.preventDefault();
+        var regValue = document.getElementById("sel1");
+        var regNum = regValue.options[regValue.selectedIndex].value; 
+        var name      = $('input[name=email]').val();
+        var user_password1    = document.getElementById("reg_password").value;
+        var user_password2   = document.getElementById("reg_password2").value;
+        
+        if( user_password1 == user_password2)
+        {
+            var obj = { user_email: name, firstPass: user_password1, userType: regNum }; 
+            //var myJSON = JSON.stringify(obj);
 
+            // localstorage a kayit
+            localStorage.setItem('myStorage', JSON.stringify(obj));
+
+            console.log("JSON: " + localStorage.getItem('myStorage'));  
+            var $tabsNav    = $('.tabs-nav'),
+            $tabsNavLis = $tabsNav.children('li');
+            
+            $tabsNav.each(function() {
+                var $this = $(this);
+
+                $this.next().children('.tab-content').stop(true,true).hide()
+                .first().show();
+
+                $this.children('li').first().addClass('active').stop(true,true).show();
+            
+            });
+            
+        }
+        else
+        {
+            alert("Password does not correctly entered!!");
+        }
+      
+    });
     /*----------------------------------------------------*/
     /*  Chatbot
     /*----------------------------------------------------*/
@@ -504,12 +543,11 @@
             var Goodbye = ["BYE", "SEE YA", "SAYONARA", "LATER", "ADIOS", "CYA", "SEEYA"]
             var Greeting = ["WHAT'S UP", "HOW'S IT GOING", "HOW ARE YOU", "NICE DAY", "GOOD MORNING", "GOOD NIGHT"]
 
-            var questions = [Hello, Goodbye, Greeting];
-            var reactions=[BotHello, BotGoodbye,BotGreeting];
+            
             var BotHello = ["HI", "HEY", "HOWDY", "HEYA", "HOLA", "HELLO", "SUP", "KONNICHIWA", "ALOHA"]
             var BotGoodbye = ["BYE", "SEE YA", "CYA", "LATER", "ADIOS", "SAYONARA", "SEEYA"]
             var BotGreeting = ["WHAT'S UP", "HOW'S IT GOING", "HOW ARE YOU", "NICE TO SEE YOU", "GOOD MORNING", "WELCOME" , "HOW CAN I HELP YOU"]
-            var BotPleasant = ["Thanks.", "Good job.", "Cool.", "I see.", "Anyway.", "right-o."]
+            
         
             
             //edit this function to change what the chatbot says
@@ -526,9 +564,11 @@
                     var question = lastUserMessage.toUpperCase();
                     if ( question.includes(Hello[i])) {
                         botMessage1 = BotHello[Math.floor(Math.random()*(BotHello.length))].toLowerCase();;
+                        botMessage2 = BotGreeting[Math.floor(Math.random()*(BotGreeting.length))].toLowerCase();;
+                    
                     }
                     if ( question.includes(Goodbye[i])) {
-                        botMessage1 = BotGoodbye[Math.floor(Math.random()*(BotHello.length))].toLowerCase();;
+                        botMessage1 = BotGoodbye[Math.floor(Math.random()*(BotGoodbye.length))].toLowerCase();;
                     }
                     if ( question.includes("HELP")) {
                         botMessage1 = " Okay, I am here to help. What do you need? ";
