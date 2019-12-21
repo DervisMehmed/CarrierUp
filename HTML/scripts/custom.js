@@ -483,44 +483,161 @@
         console.log(username_tb);
         console.log(password_tb);
     });
-
     /*----------------------------------------------------*/
     /*  Register
     /*----------------------------------------------------*/
-        $("#regButton").on('click',function(e) {
-            e.preventDefault();
-            var regValue = document.getElementById("sel1");
-            var regNum = regValue.options[regValue.selectedIndex].value; 
-            var name      = $('input[name=email]').val();
-            var user_password1    = document.getElementById("reg_password").value;
-            var user_password2   = document.getElementById("reg_password2").value;
+    $("#regButton").on('click',function(e) {
+        e.preventDefault();
+        var regValue = document.getElementById("sel1");
+        var regNum = regValue.options[regValue.selectedIndex].value; 
+        var name      = $('input[name=email]').val();
+        var user_password1    = document.getElementById("reg_password").value;
+        var user_password2   = document.getElementById("reg_password2").value;
+        
+        if( user_password1 == user_password2)
+        {
+            var obj = { user_email: name, firstPass: user_password1, userType: regNum }; 
+            //var myJSON = JSON.stringify(obj);
+
+            // localstorage a kayit
+            localStorage.setItem('myStorage', JSON.stringify(obj));
+
+            console.log("JSON: " + localStorage.getItem('myStorage'));  
+            var $tabsNav    = $('.tabs-nav'),
+            $tabsNavLis = $tabsNav.children('li');
             
-            if( user_password1 == user_password2)
-            {
-                var obj = { user_email: name, firstPass: user_password1, userType: regNum }; 
-                //var myJSON = JSON.stringify(obj);
+            $tabsNav.each(function() {
+                var $this = $(this);
 
-                // localstorage a kayit
-                localStorage.setItem('myStorage', JSON.stringify(obj));
+                $this.next().children('.tab-content').stop(true,true).hide()
+                .first().show();
 
-                console.log("JSON: " + localStorage.getItem('myStorage'));  
-                var $tabsNav    = $('.tabs-nav'),
-                $tabsNavLis = $tabsNav.children('li');
-                
-                $tabsNav.each(function() {
-                    var $this = $(this);
+                $this.children('li').first().addClass('active').stop(true,true).show();
+            
+            });
+            
+        }
+        else
+        {
+            alert("Password does not correctly entered!!");
+        }
+      
+    });
+    /*----------------------------------------------------*/
+    /*  Chatbot
+    /*----------------------------------------------------*/
+        $("#chatborder").on('click',function(e) {
 
-                    $this.next().children('.tab-content').stop(true,true).hide()
-                    .first().show();
+            var messages = [], //array that hold the record of each string in chat
+            lastUserMessage = "", //keeps track of the most recent input string from the user
+            botMessage1 = "", 
+            botMessage2 = "",
+            botMessage3 = "",
+            botMessage4 = "",
+            botMessage5 = "",
+            botMessage6 = "", //vars keeps track of what the chatbot is going to say
+            botName = 'Chatbot', //name of the chatbot
+            talking = true; //when false the speach function doesn't work
 
-                    $this.children('li').first().addClass('active').stop(true,true).show();
-                
-                });
-                
+            var Hello = ["HI", "HEY", "HOWDY", "HE YA", "HOLA", "HELLO", "SUP", "KONNICHIWA", "ALOHA"]
+            var Goodbye = ["BYE", "SEE YA", "SAYONARA", "LATER", "ADIOS", "CYA", "SEEYA"]
+            var Greeting = ["WHAT'S UP", "HOW'S IT GOING", "HOW ARE YOU", "NICE DAY", "GOOD MORNING", "GOOD NIGHT"]
+
+            
+            var BotHello = ["HI", "HEY", "HOWDY", "HEYA", "HOLA", "HELLO", "SUP", "KONNICHIWA", "ALOHA"]
+            var BotGoodbye = ["BYE", "SEE YA", "CYA", "LATER", "ADIOS", "SAYONARA", "SEEYA"]
+            var BotGreeting = ["WHAT'S UP", "HOW'S IT GOING", "HOW ARE YOU", "NICE TO SEE YOU", "GOOD MORNING", "WELCOME" , "HOW CAN I HELP YOU"]
+            
+        
+            
+            //edit this function to change what the chatbot says
+            function chatbotResponse() {
+                botMessage1 = "I don't know the answer", 
+                botMessage2 = " ",
+                botMessage3 = " ",
+                botMessage4 = " ",
+                botMessage5 = " ",
+                botMessage6 = " ",
+                talking = true;
+                var i;
+                for (i = 0; i < 10; i++) {
+                    var question = lastUserMessage.toUpperCase();
+                    if ( question.includes(Hello[i])) {
+                        botMessage1 = BotHello[Math.floor(Math.random()*(BotHello.length))].toLowerCase();;
+                        botMessage2 = BotGreeting[Math.floor(Math.random()*(BotGreeting.length))].toLowerCase();;
+                    
+                    }
+                    if ( question.includes(Goodbye[i])) {
+                        botMessage1 = BotGoodbye[Math.floor(Math.random()*(BotGoodbye.length))].toLowerCase();;
+                    }
+                    if ( question.includes("HELP")) {
+                        botMessage1 = " Okay, I am here to help. What do you need? ";
+                        botMessage2 = " If you need to search job, please ask me for job. ";
+                        botMessage3 = " If you need to search employee, please ask me for a employee. "; 
+                        botMessage4 = " If you need to contact to my creators, please ask me for a contact. ";
+                    }
+                    if ( question.includes("CONTACT")) {
+                        botMessage1 = " Contact page is to send message to my creators. "; 
+                        botMessage2 = " In the top of the page, there is menu. If you choose PAGES header,you can see contact page choice. ";
+                        botMessage3 = " There is information for communication. ";
+                        botMessage4 = " Also, you can send message with its boxes. ";
+                        botMessage5 = " Please don't complain about me !!  ";
+                    }
+                    if ( question.includes("FINE")) {
+                        botMessage1 = " Cool !! Me too ";
+                    }
+                    if ( question.includes("JOB")) {
+                        botMessage1 = " In the top of the page, there is menu."; 
+                        botMessage2 = " If you choose EMPLOYEES header, you can see what we provide for employees. ";
+                        botMessage3 = " There is information for browse jobs, browse categories, add resume, manage resume and job alerts. ";
+                        botMessage4 = " You can choose what you want.  ";
+                        botMessage5 = " Conguluations !! You are so close to find your job !! ";
+                    }
+                    if ( question.includes("EMPLOYEE")) {
+                        botMessage1 = " In the top of the page, there is menu."; 
+                        botMessage2 = " If you choose EMPLOYER header, you can see what we provide for employers. ";
+                        botMessage3 = " There is information for add jobs, manage jobs, manage applications and browse resumes. ";
+                        botMessage4 = " You can choose what you want. ";
+                        botMessage5 = " Conguluations !! You are so close to find your employee !! ";
+                    }
+                }
             }
-            else
-            {
-                alert("Password does not correctly entered!!");
+            
+            //this runs each time enter is pressed.
+            //It controls the overall input and output
+            function newEntry() {   
+                if (document.getElementById("chatbox").value != "") {
+                    lastUserMessage = document.getElementById("chatbox").value;         
+                    document.getElementById("chatbox").value = "";     
+                    messages.push(lastUserMessage);
+                    chatbotResponse();    
+                    messages.push("<b>" + botName + ":</b> " + botMessage1);
+                    messages.push( botMessage2 );
+                    messages.push( botMessage3 );
+                    messages.push( botMessage4 );
+                    messages.push( botMessage5 );
+                    messages.push( botMessage6 );
+                    for (var i = 1; i < 8; i++) {
+                        if (messages[messages.length - i])
+                            document.getElementById("chatlog"+i).innerHTML = messages[messages.length - i];
+                    }
+                    messages = [];
+                }
+            }
+
+            //runs the keypress() function when a key is pressed
+            document.onkeypress = keyPress;
+            //if the key pressed is 'enter' runs the function newEntry()
+            function keyPress(e) {
+                var x = e || window.event;
+                var key = (x.keyCode || x.which);
+                if (key == 13 || key == 3) {
+                    //runs this function when enter is pressed
+                    newEntry();
+                }
+                if (key == 38) {
+                    console.log('hi')
+                }
             }
           
         });
