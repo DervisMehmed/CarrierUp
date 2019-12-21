@@ -491,60 +491,97 @@
 
             var messages = [], //array that hold the record of each string in chat
             lastUserMessage = "", //keeps track of the most recent input string from the user
-            botMessage = "", //var keeps track of what the chatbot is going to say
+            botMessage1 = "", 
+            botMessage2 = "",
+            botMessage3 = "",
+            botMessage4 = "",
+            botMessage5 = "",
+            botMessage6 = "", //vars keeps track of what the chatbot is going to say
             botName = 'Chatbot', //name of the chatbot
             talking = true; //when false the speach function doesn't work
 
-            var Hello = ["HI", "HEY", "HOWDY", "HEYA", "HOLA", "HELLO", "SUP", "KONNICHIWA", "ALOHA"]
-            var Goodbye = ["BYE", "SEE YA", "CYA", "LATER", "ADIOS", "SAYONARA", "SEEYA"]
+            var Hello = ["HI", "HEY", "HOWDY", "HE YA", "HOLA", "HELLO", "SUP", "KONNICHIWA", "ALOHA"]
+            var Goodbye = ["BYE", "SEE YA", "SAYONARA", "LATER", "ADIOS", "CYA", "SEEYA"]
             var Greeting = ["WHAT'S UP", "HOW'S IT GOING", "HOW ARE YOU", "NICE DAY", "GOOD MORNING", "GOOD NIGHT"]
-            var Name = [ "WHAT IS YOUR NAME", "WHAT'S YOUR NAME", "WHO ARE YOU", "WHAT DO THEY CALL YOU", "COMO TE LLAMAS"]
-            var Actions = ["HELP", "DRINK", "CHALLENGE"]
-            var Questions = ["QUESTION", "QUIZ", "CODE", "ANSWER", "HTML", "CSS", "JAVASCRIPT" , "JOB"];
 
+            var questions = [Hello, Goodbye, Greeting];
             var reactions=[BotHello, BotGoodbye,BotGreeting];
             var BotHello = ["HI", "HEY", "HOWDY", "HEYA", "HOLA", "HELLO", "SUP", "KONNICHIWA", "ALOHA"]
             var BotGoodbye = ["BYE", "SEE YA", "CYA", "LATER", "ADIOS", "SAYONARA", "SEEYA"]
-            var BotGreeting = ["WHAT'S UP", "HOW'S IT GOING", "HOW ARE YOU", "NICE TO SEE YOU", "GOOD MORNING", "WELCOME"]
+            var BotGreeting = ["WHAT'S UP", "HOW'S IT GOING", "HOW ARE YOU", "NICE TO SEE YOU", "GOOD MORNING", "WELCOME" , "HOW CAN I HELP YOU"]
             var BotPleasant = ["Thanks.", "Good job.", "Cool.", "I see.", "Anyway.", "right-o."]
         
+            
             //edit this function to change what the chatbot says
             function chatbotResponse() {
+                botMessage1 = "I don't know the answer", 
+                botMessage2 = " ",
+                botMessage3 = " ",
+                botMessage4 = " ",
+                botMessage5 = " ",
+                botMessage6 = " ",
                 talking = true;
-                botMessage = "I'm confused"; //the default message
                 var i;
                 for (i = 0; i < 10; i++) {
                     var question = lastUserMessage.toUpperCase();
                     if ( question.includes(Hello[i])) {
-                        console.log("Girdi mi");
-                        botMessage = BotHello[Math.floor(Math.random()*(BotHello.length))].toLowerCase();;
+                        botMessage1 = BotHello[Math.floor(Math.random()*(BotHello.length))].toLowerCase();;
+                    }
+                    if ( question.includes(Goodbye[i])) {
+                        botMessage1 = BotGoodbye[Math.floor(Math.random()*(BotHello.length))].toLowerCase();;
+                    }
+                    if ( question.includes("HELP")) {
+                        botMessage1 = " Okay, I am here to help. What do you need? ";
+                        botMessage2 = " If you need to search job, please ask me for job. ";
+                        botMessage3 = " If you need to search employee, please ask me for a employee. "; 
+                        botMessage4 = " If you need to contact to my creators, please ask me for a contact. ";
+                    }
+                    if ( question.includes("CONTACT")) {
+                        botMessage1 = " Contact page is to send message to my creators. "; 
+                        botMessage2 = " In the top of the page, there is menu. If you choose PAGES header,you can see contact page choice. ";
+                        botMessage3 = " There is information for communication. ";
+                        botMessage4 = " Also, you can send message with its boxes. ";
+                        botMessage5 = " Please don't complain about me !!  ";
+                    }
+                    if ( question.includes("FINE")) {
+                        botMessage1 = " Cool !! Me too ";
+                    }
+                    if ( question.includes("JOB")) {
+                        botMessage1 = " In the top of the page, there is menu."; 
+                        botMessage2 = " If you choose EMPLOYEES header, you can see what we provide for employees. ";
+                        botMessage3 = " There is information for browse jobs, browse categories, add resume, manage resume and job alerts. ";
+                        botMessage4 = " You can choose what you want.  ";
+                        botMessage5 = " Conguluations !! You are so close to find your job !! ";
+                    }
+                    if ( question.includes("EMPLOYEE")) {
+                        botMessage1 = " In the top of the page, there is menu."; 
+                        botMessage2 = " If you choose EMPLOYER header, you can see what we provide for employers. ";
+                        botMessage3 = " There is information for add jobs, manage jobs, manage applications and browse resumes. ";
+                        botMessage4 = " You can choose what you want. ";
+                        botMessage5 = " Conguluations !! You are so close to find your employee !! ";
                     }
                 }
             }
             
             //this runs each time enter is pressed.
             //It controls the overall input and output
-            function newEntry() {
-                //if the message from the user isn't empty then run 
+            function newEntry() {   
                 if (document.getElementById("chatbox").value != "") {
-                //pulls the value from the chatbox ands sets it to lastUserMessage
-                lastUserMessage = document.getElementById("chatbox").value;
-                //sets the chat box to be clear
-                document.getElementById("chatbox").value = "";
-                //adds the value of the chatbox to the array messages
-                messages.push(lastUserMessage);
-                //Speech(lastUserMessage);  //says what the user typed outloud
-                //sets the variable botMessage in response to lastUserMessage
-                chatbotResponse();
-                //add the chatbot's name and message to the array messages
-                messages.push("<b>" + botName + ":</b> " + botMessage);
-                // says the message using the text to speech function written below
-               
-                //outputs the last few array elements of messages to html
-                for (var i = 1; i < 8; i++) {
-                    if (messages[messages.length - i])
-                    document.getElementById("chatlog" + i).innerHTML = messages[messages.length - i];
-                }
+                    lastUserMessage = document.getElementById("chatbox").value;         
+                    document.getElementById("chatbox").value = "";     
+                    messages.push(lastUserMessage);
+                    chatbotResponse();    
+                    messages.push("<b>" + botName + ":</b> " + botMessage1);
+                    messages.push( botMessage2 );
+                    messages.push( botMessage3 );
+                    messages.push( botMessage4 );
+                    messages.push( botMessage5 );
+                    messages.push( botMessage6 );
+                    for (var i = 1; i < 8; i++) {
+                        if (messages[messages.length - i])
+                            document.getElementById("chatlog"+i).innerHTML = messages[messages.length - i];
+                    }
+                    messages = [];
                 }
             }
 
@@ -552,18 +589,16 @@
             document.onkeypress = keyPress;
             //if the key pressed is 'enter' runs the function newEntry()
             function keyPress(e) {
-            var x = e || window.event;
-            var key = (x.keyCode || x.which);
-            if (key == 13 || key == 3) {
-            //runs this function when enter is pressed
-            newEntry();
+                var x = e || window.event;
+                var key = (x.keyCode || x.which);
+                if (key == 13 || key == 3) {
+                    //runs this function when enter is pressed
+                    newEntry();
+                }
+                if (key == 38) {
+                    console.log('hi')
+                }
             }
-            if (key == 38) {
-            console.log('hi')
-                //document.getElementById("chatbox").value = lastUserMessage;
-            }
-            }
-
           
         });
 
