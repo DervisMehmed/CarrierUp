@@ -463,14 +463,8 @@
                 var x = localStorage.getItem("myStorage2"); 
                 console.log(x);
                 //document.getElementById("manager").innerHTML = "ELİF";
-                var obj = JSON.parse(localStorage.getItem("myStorage2"), function (key, value) {
-                    if (key == "name") 
-                        nameing = value;        });
                 console.log("JSON: " + localStorage.getItem('myStorage2')); 
-                nameing = obj2.name;
-                window.onload = function() {
-                    document.getElementById("myHeader").innerHTML =" obj2.name";
-                }
+                
                 
         });
         console.log("JSON: " + localStorage.getItem('myStorage2')); 
@@ -478,7 +472,7 @@
         document.getElementById("myHeader").innerHTML =obje.name;
         document.getElementById("myTitle").innerHTML =obje.title;
         document.getElementById("location").innerHTML =obje.location;
-        
+
     /*----------------------------------------------------*/
     /*  Login button
     /*----------------------------------------------------*/
