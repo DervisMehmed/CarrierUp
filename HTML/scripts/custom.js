@@ -444,7 +444,41 @@
             e.preventDefault();
             $(this).parent().remove();
         });
+        var nameing = "default"; 
+        $("#preview").on('click',function(e) {
+            var name    = document.getElementById("name").value;
+            var mail   = document.getElementById("mail").value;
+            var title   = document.getElementById("title").value;
+            var location   = document.getElementById("location").value;
+            var videoLink = document.getElementById("videoId").value;
+            var summary = document.getElementById("summary").value;
+            var obj2 = { name: name, mail: mail, title: title, location: location, videoLink: videoLink, summary: summary }; 
 
+                // localstorage a kayit
+                localStorage.setItem('myStorage2', JSON.stringify(obj2));
+                //console.log(myStorage2);
+               // var obje = JSON.parse(myStorage2);
+                console.log(obj2.name);
+               // document.getElementById("myHeader").innerHTML = obj2.name;
+                var x = localStorage.getItem("myStorage2"); 
+                console.log(x);
+                //document.getElementById("manager").innerHTML = "ELİF";
+                var obj = JSON.parse(localStorage.getItem("myStorage2"), function (key, value) {
+                    if (key == "name") 
+                        nameing = value;        });
+                console.log("JSON: " + localStorage.getItem('myStorage2')); 
+                nameing = obj2.name;
+                window.onload = function() {
+                    document.getElementById("myHeader").innerHTML =" obj2.name";
+                }
+                
+        });
+        console.log("JSON: " + localStorage.getItem('myStorage2')); 
+        var obje = JSON.parse(localStorage.getItem('myStorage2'));
+        document.getElementById("myHeader").innerHTML =obje.name;
+        document.getElementById("myTitle").innerHTML =obje.title;
+        document.getElementById("location").innerHTML =obje.location;
+        
     /*----------------------------------------------------*/
     /*  Login button
     /*----------------------------------------------------*/
