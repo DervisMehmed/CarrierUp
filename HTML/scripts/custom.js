@@ -471,7 +471,7 @@
         var obje = JSON.parse(localStorage.getItem('myStorage2'));
         document.getElementById("myHeader").innerHTML =obje.name;
         document.getElementById("myTitle").innerHTML =obje.title;
-        document.getElementById("location").innerHTML =obje.location;
+        document.getElementById("myLocation").innerHTML =obje.location;
 
     /*----------------------------------------------------*/
     /*  Login button
