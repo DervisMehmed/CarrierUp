@@ -36,34 +36,31 @@
 
 		<!-- Logo -->
 		<div id="logo">
-			<h1><a href="index_employer.html"><img src="images/logo.png" alt="Work Scout" /></a></h1>
+			<h1><a href="index_employee.html"><img src="images/logo.png" alt="Work Scout" /></a></h1>
 		</div>
 
 		<!-- Menu -->
 		<nav id="navigation" class="menu">
 			<ul id="responsive">
 
-				<li><a href="index_employer.html">Home</a>
+				<li>
+					<a href="index_employee.html" id="current">Home</a>
 				</li>
 
-				<li><a href="#" id="current">Pages</a>
+				<li><a href="#">Employees</a>
 					<ul>
-						<li><a href="job-page.html">Job Page</a></li>
-						<li><a href="resume-page.html">Resume Page</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="browse-jobs_employee.html">Browse Jobs</a></li>
+						<li><a href="browse-categories_employee.html">Browse Categories</a></li>
+						<li><a href="add-resume.html">Add Resume</a></li>
+						<li><a href="manage-resumes_employee.html">Manage Resumes</a></li>
 					</ul>
 				</li>
 
-				<li><a href="#">For Employers</a>
-					<ul>
-						<li><a href="add-job.html">Add Job</a></li>
-						<li><a href="manage-jobs_employer.html">Manage Jobs</a></li>
-						<li><a href="manage-applications_employer.html">Manage Applications</a></li>
-						<li><a href="browse-resumes_employer.html">Browse Resumes</a></li>
-					</ul>
+				<li>
+					<a href="contact_employee.html">Contact</a></li>
 				</li>
 
-				<li><a href="blog_employer.html" id="current">About Us</a></li>
+				<li><a href="blog_employee.html" id="current">About Us</a></li>
 			</ul>
 
 
@@ -86,52 +83,18 @@
 
 <!-- Titlebar
 ================================================== -->
-<div id="titlebar" class="resume">
+<div id="titlebar" class="single">
 	<div class="container">
-		<div class="ten columns">
-			<div class="resume-titlebar">
-				<img src="images/applicant1.png" alt="">
-				<div class="resumes-list-content">
-					<h4>Channing Tatum <span>Project Manager</span></h4>
-					<span class="icons"><i class="fa fa-map-marker"></i> Ankara, Turkey</span>
-					<span class="icons"><i class="fa fa-money"></i> $15 / hour</span>
-					<span class="icons"><a href="#"><i class="fa fa-link"></i> Website</a></span>
-					<span class="icons"><a href="mailto:mynameisjeff@nomail.com"><i class="fa fa-envelope"></i> mynameisjeff@nomail.com</a></span>
-					<div class="skills">
-						<span>PMP</span>
-						<span>CLP</span>
-						<span>Germany</span>
-					</div>
-					<div class="clearfix"></div>
 
-				</div>
-			</div>
-		</div>
-
-		<div class="six columns">
-			<div class="two-buttons">
-
-				<a href="#small-dialog" class="popup-with-zoom-anim button"><i class="fa fa-envelope"></i> Send Message</a>
-
-				<div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
-					<div class="small-dialog-headline">
-						<h2>Send Message to Channing Tatum</h2>
-					</div>
-
-					<div class="small-dialog-content">
-						<form action="#" method="get" >
-							<input type="text" placeholder="Full Name" value=""/>
-							<input type="text" placeholder="Email Address" value=""/>
-							<textarea placeholder="Message"></textarea>
-
-							<button class="send">Send Application</button>
-						</form>
-					</div>
-					
-				</div>
-
-
-			</div>
+		<div class="sixteen columns">
+			<h2>Manage Resumes</h2>
+			<nav id="breadcrumbs">
+				<ul>
+					<li>You are here:</li>
+					<li><a href="#">Home</a></li>
+					<li>Candidate Dashboard</li>
+				</ul>
+			</nav>
 		</div>
 
 	</div>
@@ -141,65 +104,53 @@
 <!-- Content
 ================================================== -->
 <div class="container">
-	<!-- Recent Jobs -->
-	<div class="eight columns">
-	<div class="padding-right">
+	
+	<!-- Table -->
+	<div class="sixteen columns">
 
-		<h3 class="margin-bottom-15">About Me</h3>
+		<p class="margin-bottom-25">Your resume can be viewed, edited or removed below.</p>
 
-		<p class="margin-reset">
-			The Food Service Specialist ensures outstanding customer service is provided to food customers and that all food offerings meet the required stock levels and presentation standards. Beginning your career as a Food Steward will give you a strong foundation in Speedway’s food segment that can make you a vital member of the front line team!
-		</p>
+		<table class="manage-table resumes responsive-table">
+
+			<tr>
+				<th><i class="fa fa-user"></i> Name</th>
+				<th><i class="fa fa-file-text"></i> Title</th>
+				<th><i class="fa fa-map-marker"></i> Location</th>
+				<th><i class="fa fa-calendar"></i> Date Posted</th>
+				<th></th>
+			</tr>
+
+			<!-- Item #1 -->
+			<tr>
+				<td class="title"><a href="#">Dervis Barutcu</a></td>
+				<td>Front End Web Developer</td>
+				<td>Turkey</td>
+				<td>September 30, 2019</td>
+				<td class="action">
+					<a href="#"><i class="fa fa-pencil"></i> Edit</a>
+					<a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
+					<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+				</td>
+			</tr>
+
+			<!-- Item #1 -->
+			<tr>
+				<td class="title"><a href="#">Dervis Barutcu</a></td>
+				<td>Logo Designer</td>
+				<td>Turkey</td>
+				<td>August 12, 2019</td>
+				<td class="action">
+					<a href="#"><i class="fa fa-pencil"></i> Edit</a>
+					<a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
+					<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+				</td>
+			</tr>	
+
+		</table>
 
 		<br>
 
-		<p>The <strong>Food Service Specialist</strong> will have responsibilities that include:</p>
-
-		<ul class="list-1">
-			<li>Excellent customer service skills, communication skills, and a happy, smiling attitude are essential.</li>
-			<li>Must be available to work required shifts including weekends, evenings and holidays.</li>
-			<li>Must be able to perform repeated bending, standing and reaching.</li>
-			<li>Must be able to occasionally lift up to 50 pounds</li>
-		</ul>
-
-	</div>
-	</div>
-
-
-	<!-- Widgets -->
-	<div class="eight columns">
-
-		<h3 class="margin-bottom-20">Education</h3>
-
-		<!-- Resume Table -->
-		<dl class="resume-table">
-			<dt>
-				<small class="date">2002 - 2008</small>
-				<strong>Ph.D. - Middle East Technical University</strong>
-			</dt>
-			<dd>
-				<p>Biomedical Engineering</p>
-			</dd>
-
-		
-			<dt>
-				<small class="date">1999 - 2002</small>
-				<strong>M.Sc. - Bilkent University</strong>
-			</dt>
-			<dd>
-				<p>System & Control</p>
-			</dd>
-
-
-			<dt>
-				<small class="date">1994 - 1999</small>
-				<strong>Bilkent University - Electrical and Electronics Engineering</strong>
-			</dt>
-			<dd>
-				<p>Telecommunication, Signal Processing</p>
-			</dd>
-
-		</dl>
+		<a href="#" class="button">Add Resume</a>
 
 	</div>
 
