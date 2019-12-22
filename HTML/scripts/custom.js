@@ -430,6 +430,7 @@
     /*  Add Resume 
     /*----------------------------------------------------*/   
         $('.box-to-clone').hide();
+    
         $('.add-box').on('click', function(e) {
             e.preventDefault();
             var newElem = $(this).parent().find('.box-to-clone:first').clone();
@@ -467,12 +468,15 @@
                 
                 
         });
+        if(localStorage.getItem('myStorage2') != null){
         console.log("JSON: " + localStorage.getItem('myStorage2')); 
         var obje = JSON.parse(localStorage.getItem('myStorage2'));
-        //document.getElementById("myHeader").innerHTML =obje.name;
-        //document.getElementById("myTitle").innerHTML =obje.title;
-        //document.getElementById("location").innerHTML =obje.location;
-
+        document.getElementById("myHeader").innerHTML =obje.name;
+        document.getElementById("myTitle").innerHTML =obje.title;
+        document.getElementById("myLocation").innerHTML =obje.location;
+        document.getElementById("myVideoLink").innerHTML =obje.videoLink;
+        document.getElementById("mySummary").innerHTML =obje.summary;
+        }
     /*----------------------------------------------------*/
     /*  Login button
     /*----------------------------------------------------*/
