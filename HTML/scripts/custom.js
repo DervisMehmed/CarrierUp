@@ -469,9 +469,9 @@
         });
         console.log("JSON: " + localStorage.getItem('myStorage2')); 
         var obje = JSON.parse(localStorage.getItem('myStorage2'));
-        document.getElementById("myHeader").innerHTML =obje.name;
-        document.getElementById("myTitle").innerHTML =obje.title;
-        document.getElementById("location").innerHTML =obje.location;
+        //document.getElementById("myHeader").innerHTML =obje.name;
+        //document.getElementById("myTitle").innerHTML =obje.title;
+        //document.getElementById("location").innerHTML =obje.location;
 
     /*----------------------------------------------------*/
     /*  Login button
@@ -555,7 +555,7 @@
     /*  Chatbot
     /*----------------------------------------------------*/
         $("#chatborder").on('click',function(e) {
-
+          
             var messages = [], //array that hold the record of each string in chat
             lastUserMessage = "", //keeps track of the most recent input string from the user
             botMessage1 = "", 
@@ -581,11 +581,11 @@
             //edit this function to change what the chatbot says
             function chatbotResponse() {
                 botMessage1 = "I don't know the answer", 
-                botMessage2 = " ",
-                botMessage3 = " ",
-                botMessage4 = " ",
-                botMessage5 = " ",
-                botMessage6 = " ",
+                botMessage2 = "<br>",
+                botMessage3 = "<br>",
+                botMessage4 = "<br>",
+                botMessage5 = "<br>",
+                botMessage6 = "<br>",
                 talking = true;
                 var i;
                 for (i = 0; i < 10; i++) {
@@ -603,13 +603,17 @@
                         botMessage2 = " If you need to search job, please ask me for job. ";
                         botMessage3 = " If you need to search employee, please ask me for a employee. "; 
                         botMessage4 = " If you need to contact to my creators, please ask me for a contact. ";
+                        botMessage5 = " ";
+                        botMessage6 = " ";
                     }
                     if ( question.includes("CONTACT")) {
                         botMessage1 = " Contact page is to send message to my creators. "; 
-                        botMessage2 = " In the top of the page, there is menu. If you choose PAGES header,you can see contact page choice. ";
-                        botMessage3 = " There is information for communication. ";
-                        botMessage4 = " Also, you can send message with its boxes. ";
-                        botMessage5 = " Please don't complain about me !!  ";
+                        botMessage2 = " In the top of the page, there is menu. ";
+                        botMessage3 = " If you choose PAGES header, you can see contact page choice. ";
+                        botMessage4 = " There is information for communication. ";
+                        botMessage5 = " Also, you can send message with its boxes. ";
+                        botMessage6 = " ";
+                
                     }
                     if ( question.includes("FINE")) {
                         botMessage1 = " Cool !! Me too ";
@@ -617,16 +621,18 @@
                     if ( question.includes("JOB")) {
                         botMessage1 = " In the top of the page, there is menu."; 
                         botMessage2 = " If you choose EMPLOYEES header, you can see what we provide for employees. ";
-                        botMessage3 = " There is information for browse jobs, browse categories, add resume, manage resume and job alerts. ";
-                        botMessage4 = " You can choose what you want.  ";
-                        botMessage5 = " Conguluations !! You are so close to find your job !! ";
+                        botMessage3 = " You can choose what you want.  ";
+                        botMessage4 = " Conguluations !! You are so close to find your job !! ";
+                        botMessage5 = " ";
+                        botMessage6 = " ";
                     }
                     if ( question.includes("EMPLOYEE")) {
                         botMessage1 = " In the top of the page, there is menu."; 
                         botMessage2 = " If you choose EMPLOYER header, you can see what we provide for employers. ";
-                        botMessage3 = " There is information for add jobs, manage jobs, manage applications and browse resumes. ";
-                        botMessage4 = " You can choose what you want. ";
-                        botMessage5 = " Conguluations !! You are so close to find your employee !! ";
+                        botMessage3 = " You can choose what you want. ";
+                        botMessage4 = " Conguluations !! You are so close to find your employee !! ";
+                        botMessage5 = " ";
+                        botMessage6 = " ";
                     }
                 }
             }
@@ -645,6 +651,7 @@
                     messages.push( botMessage4 );
                     messages.push( botMessage5 );
                     messages.push( botMessage6 );
+                    console.log("deneme");
                     for (var i = 1; i < 8; i++) {
                         if (messages[messages.length - i])
                             document.getElementById("chatlog"+i).innerHTML = messages[messages.length - i];
