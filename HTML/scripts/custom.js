@@ -469,13 +469,13 @@
                 
         });
         if(localStorage.getItem('myStorage2') != null){
-        console.log("JSON: " + localStorage.getItem('myStorage2')); 
-        var obje = JSON.parse(localStorage.getItem('myStorage2'));
-        document.getElementById("myHeader").innerHTML =obje.name;
-        document.getElementById("myTitle").innerHTML =obje.title;
-        document.getElementById("myLocation").innerHTML =obje.location;
-        document.getElementById("myVideoLink").innerHTML =obje.videoLink;
-        document.getElementById("mySummary").innerHTML =obje.summary;
+            console.log("JSON: " + localStorage.getItem('myStorage2')); 
+            var obje = JSON.parse(localStorage.getItem('myStorage2'));
+            document.getElementById("myHeader").innerHTML =obje.name;
+            document.getElementById("myTitle").innerHTML =obje.title;
+            document.getElementById("myLocation").innerHTML =obje.location;
+            document.getElementById("myVideoLink").innerHTML =obje.videoLink;
+            document.getElementById("mySummary").innerHTML =obje.summary;
         }
     /*----------------------------------------------------*/
     /*  Login button
